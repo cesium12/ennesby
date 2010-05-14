@@ -1,0 +1,13 @@
+application: ennesby
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /_wave/.*
+  script: ennesby.py
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+- url: /zephyr.*
+  script: zephyr_post.py
