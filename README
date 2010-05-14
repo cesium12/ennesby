@@ -1,0 +1,19 @@
+This is Ennesby.
+
+ennesby_lock implements a Google Wave robot that prevents editing.
+ennesby_translate implements a Google Wave interface to Translation Party.
+ennesby_zephyr implements a Google Wave / zephyr bridge.
+ennesby_zephyr[1-3] are failed versions, kept for historical reasons.
+
+zephyr_daemon and zephyr_post are necessary for ennesby_zephyr.
+conf contains Ennesby configuration.
+app.yaml contains Google configuration.
+ennesby and daemon are symlinks to the currently active versions,
+	ennesby_zephyr and zephyr_daemon.
+
+setup-zephyr compiles the Python zephyr library, Zephyr.c.
+
+ennesby_* and zephyr_* must run on Google App Engine. The necessary Google
+	libraries are not included. Some also depend on helpers, which is part
+	of barnsnake. The exception is zephyr_daemon, which runs locally and
+	requires only the zephyr library.
