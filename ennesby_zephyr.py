@@ -22,8 +22,8 @@ def onBlip(event, wavelet):
 		zclass = zclass.strip().replace('/', '')
 		instance = instance.strip().replace('/', '')
 		signature = wavelet.creator.strip().replace('/', '')
-		message = message.strip()
-		urlopen(ZCOMMIT + 'class/%s/instance/%s/zsig/%s/' % (zclass, instance, signature), urlencode({ 'payload' : message })).read()
+		message = message.lstrip('\n').rstrip()
+		urlopen(ZCOMMIT, urlencode({ 'class' : zclass, 'instance' : instance, 'zsig' : signature, 'message' : message })).read()
 		wavelet.delete(event.blip)
 	except Exception, e:
 		sys.stderr.write(traceback.format_exc())

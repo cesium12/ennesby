@@ -15,6 +15,8 @@ def loop():
 	zobject = Zephyr.Zephyr()
 	for zclass in sys.argv[2:]:
 		zobject.subscribe((zclass, '*', '*'))
+	zobject.unsubscribe(('message', 'personal', zobject.sender()))
+	zobject.unsubscribe(('message', 'urgent', zobject.sender()))
 	while 1:
 		select.select([zobject.getfd()], [], [])
 		msg = zobject.check()
