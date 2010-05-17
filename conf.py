@@ -18,4 +18,4 @@ PROFILE = {
 	'profile_url' : 'http://web.mit.edu/cesium/Public/lie.png'
 }
 
-ZCOMMIT = 'http://zcommit.mit.edu/default/'
+URL = 'http://cesium.is-a-geek.org/zephyr'

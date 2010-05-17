@@ -2,7 +2,7 @@ from waveapi import events, blip, robot, appengine_robot_runner
 # appengine/appcfg.py update ennesby
 from urllib2 import urlopen
 from urllib import urlencode
-from conf import SEP, NAME, TITLE, PROFILE, ZCOMMIT
+from conf import SEP, NAME, TITLE, PROFILE, URL
 import re, sys, traceback
 
 def onJoin(event, wavelet):
@@ -23,10 +23,15 @@ def onBlip(event, wavelet):
 		instance = instance.strip().replace('/', '')
 		signature = wavelet.creator.strip().replace('/', '')
 		message = message.lstrip('\n').rstrip()
-		urlopen(ZCOMMIT, urlencode({ 'class' : zclass, 'instance' : instance, 'zsig' : signature, 'message' : message })).read()
+		urlopen(URL, urlencode({
+				'method' : 'zsend',
+				'zclass' : zclass,
+				'instance' : instance,
+				'signature' : signature,
+				'message' : message })).read()
 		wavelet.delete(event.blip)
-	except Exception, e:
-		sys.stderr.write(traceback.format_exc())
+	except Exception:
+		traceback.print_exc(file=sys.stdout)
 
 def makeBot():
 	return robot.Robot(NAME, **PROFILE)
